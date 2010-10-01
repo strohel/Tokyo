@@ -13,7 +13,7 @@ ext_params['extra_compile_args'] = ["-O2"]
 ext_params['extra_link_args'] = ["-Wl,-O1", "-Wl,--as-needed"]  # TODO: ad-neeeded ignored
 
 ext_modules=[
-    Extension("tokyo", ["tokyo.pyx"], libraries=['cblas'], **ext_params),
+    Extension("tokyo", ["tokyo.pyx"], libraries=['cblas', 'lapack'], **ext_params),
     Extension("verify", ["verify.pyx"], **ext_params),
     Extension("single_speed", ["single_speed.pyx"], **ext_params),
     Extension("double_speed", ["double_speed.pyx"], **ext_params),
