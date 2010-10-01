@@ -1,5 +1,3 @@
-
-import numpy as np
 cimport numpy as np
 
 #
@@ -14,17 +12,17 @@ cdef extern from "Python.h":
 cdef extern from "numpy/arrayobject.h":
 
     cdef void import_array()
-    
+
     cdef object PyArray_ZEROS( int nd, np.npy_intp *dims, int typenum, int fortran )
     cdef object PyArray_SimpleNew( int nd, np.npy_intp *dims, int typenum )
     cdef object PyArray_EMPTY( int nd, np.npy_intp *dims, int typenum, int fortran )
-    
+
     int PyArray_ISCARRAY( np.ndarray instance ) # I can't get this one to work?!?
 
     int PyArray_FLOAT
     int PyArray_DOUBLE
-    
-    
+
+
 cdef extern from "cblas.h":
 
     enum CBLAS_ORDER:     CblasRowMajor, CblasColMajor
@@ -51,7 +49,7 @@ cdef extern from "cblas.h":
     double lib_dasum "cblas_dasum"(int N, double *x, int incX)
     int lib_isamax   "cblas_isamax"(int N, float  *x, int incX)
     int lib_idamax   "cblas_idamax"(int N, double *x, int incX)
-        
+
     # BLAS level 2 routines
 
     void lib_sgemv "cblas_sgemv"(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA, int M, int N,
@@ -69,7 +67,7 @@ cdef extern from "cblas.h":
                                 int incX, double *y, int incY, double *A, int lda)
 
     # BLAS level 3 routines
-        
+
     void lib_sgemm "cblas_sgemm"(CBLAS_ORDER Order, CBLAS_TRANSPOSE TransA,
                                  CBLAS_TRANSPOSE TransB, int M, int N, int K,
                                  float  alpha, float  *A, int lda, float  *B, int ldb,
@@ -309,5 +307,3 @@ cdef void dvsetzero( np.ndarray x )
 # Y += alpha * X
 cdef void smaxpy( float  alpha, np.ndarray X, np.ndarray Y )
 cdef void dmaxpy( double alpha, np.ndarray X, np.ndarray Y )
-
-
