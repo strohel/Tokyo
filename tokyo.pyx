@@ -114,7 +114,7 @@ cdef void daxpy( double alpha, np.ndarray x, np.ndarray y ):
 # vector dot product: x.T y
 #
 cdef float sdot_(int N, float *x, int incX, float *y, int incY ):
-    lib_sdot( N, x, incX, y, incY ) 
+    return lib_sdot( N, x, incX, y, incY )
 
 cdef float sdot( np.ndarray x, np.ndarray y ):
     if x.ndim != 1: raise ValueError("x is not a vector") 
@@ -126,7 +126,7 @@ cdef float sdot( np.ndarray x, np.ndarray y ):
 
 
 cdef double ddot_(int N, double *x, int incX, double *y, int incY ):
-    lib_ddot( N, x, incX, y, incY ) 
+    return lib_ddot( N, x, incX, y, incY )
 
 cdef double ddot( np.ndarray x, np.ndarray y ):
     if x.ndim != 1: raise ValueError("x is not a vector") 
